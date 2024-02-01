@@ -10,6 +10,8 @@ class Educacion(models.Model):
     creado_en = models.DateTimeField(auto_now_add=True)
     modificado_en = models.DateTimeField(auto_now=True)
 
+    def __str__(self):
+        return self.titulo
 
 class Experiencia(models.Model):
     empresa = models.CharField(max_length=100)
@@ -22,7 +24,8 @@ class Experiencia(models.Model):
     creado_en = models.DateTimeField(auto_now_add=True)
     modificado_en = models.DateTimeField(auto_now=True)
 
-
+    def __str__(self):
+        return self.cargo
 class Proyectos(models.Model):
     nombre_proyecto = models.CharField(max_length=100)
     descripcion = models.TextField()
@@ -31,6 +34,8 @@ class Proyectos(models.Model):
     creado_en = models.DateTimeField(auto_now_add=True)
     modificado_en = models.DateTimeField(auto_now=True)
 
+    def __str__(self):
+        return self.nombre_proyecto
 
 class AcercaDe(models.Model):
     nombre = models.CharField(max_length=100)
@@ -39,4 +44,6 @@ class AcercaDe(models.Model):
     descripcion = models.TextField()
     creado_en = models.DateTimeField(auto_now_add=True)
     modificado_en = models.DateTimeField(auto_now=True)
-    
+
+    def __str__(self):
+        return self.nombre

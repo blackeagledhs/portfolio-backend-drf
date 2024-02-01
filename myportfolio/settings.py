@@ -110,7 +110,7 @@ DATABASES = {
   'default': {
     'ENGINE': 'django.db.backends.postgresql',
     'NAME': 'portfolio',
-
+   
     'PORT': '5432',
     'OPTIONS': {'sslmode': 'require'},
   }
