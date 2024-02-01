@@ -110,9 +110,7 @@ DATABASES = {
   'default': {
     'ENGINE': 'django.db.backends.postgresql',
     'NAME': 'portfolio',
-    'USER': 'blackeagledhs',
-    'PASSWORD': 'cmdX08ESqQgn',
-    'HOST': 'ep-tiny-scene-13455755.us-east-2.aws.neon.tech',
+
     'PORT': '5432',
     'OPTIONS': {'sslmode': 'require'},
   }
