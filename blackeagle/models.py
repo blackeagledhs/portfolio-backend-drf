@@ -6,7 +6,7 @@ class Education(models.Model):
     title = models.CharField(max_length=100)
     year = models.IntegerField()
     desccription = models.TextField(blank=True, null=True)
-    image = models.ImageField(upload_to='educacion_images/', blank=True, null=True)
+    image = models.URLField(null=True)
     created_on = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
 
@@ -33,7 +33,7 @@ class Projects(models.Model):
     project_name = models.CharField(max_length=100)
     description = models.TextField()
     project_url = models.URLField()
-    image = models.ImageField(upload_to='proyectos_images/', blank=True, null=True)
+    image = models.URLField()
     created_on = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
 
@@ -44,7 +44,7 @@ class Projects(models.Model):
 class About(models.Model):
     name = models.CharField(max_length=100)
     surname = models.CharField(max_length=100)
-    selfie = models.ImageField(upload_to='about-images/', blank=True, null=False)
+    selfie = models.URLField(null=False)
     position = models.CharField(max_length=100)
     description = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
