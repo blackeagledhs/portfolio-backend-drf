@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import os
-import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -82,9 +81,9 @@ TEMPLATES = [
 WSGI_APPLICATION = 'myportfolio.wsgi.application'
 
 # Configuración de CORS
-#CORS_ALLOWED_ORIGINS = [
+# CORS_ALLOWED_ORIGINS = [
 #    "http://localhost:4200",  # Agrega aquí la URL de tu frontend
-#]
+# ]
 
 # Configuración de JWT
 REST_FRAMEWORK = {
@@ -104,13 +103,14 @@ CSRF_COOKIE_DOMAIN = 'portfolioback-1-j3404097.deta.app'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-# To use Neon with Django, you have to create a Project on Neon and specify the project connection settings in your settings.py in the same way as for standalone Postgres.
 
 DATABASES = {
   'default': {
     'ENGINE': 'django.db.backends.postgresql',
     'NAME': 'portfolio',
-   
+    'USER': 'blackeagledhs',
+    'PASSWORD': 'cmdX08ESqQgn',
+    'HOST': 'ep-tiny-scene-13455755.us-east-2.aws.neon.tech',
     'PORT': '5432',
     'OPTIONS': {'sslmode': 'require'},
   }

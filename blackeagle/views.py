@@ -4,8 +4,8 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
 from rest_framework import status
 from django.db import transaction
-from .models import Educacion, Experiencia, AcercaDe, Proyectos
-from .serializers import EducacionSerializer, ExperienciaSerializer, ProyectosSerializer, AcercaDeSerializer
+from .models import Education, Experience, About, Projects
+from .serializers import EducationSerializer, ExperienceSerializer, ProjectsSerializer, AboutSerializer
 
 
 class BaseModelViewSet(viewsets.ModelViewSet):
@@ -23,28 +23,28 @@ class BaseModelViewSet(viewsets.ModelViewSet):
             return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
     def get_permissions(self):
-        # Permitir GET sin autenticación, requerir autenticación para otras operaciones
+
         if self.action in ['list', 'retrieve']:
             return [AllowAny()]
         else:
             return super().get_permissions()
 
 
-class EducacionViewSet(BaseModelViewSet):
-    queryset = Educacion.objects.all().order_by('-creado_en')  # Ordenar por fecha de creación descendente
-    serializer_class = EducacionSerializer
+class EducationViewSet(BaseModelViewSet):
+    queryset = Education.objects.all().order_by('-created_on')
+    serializer_class = EducationSerializer
 
 
-class ExperienciaViewSet(BaseModelViewSet):
-    queryset = Experiencia.objects.all().order_by('-creado_en')
-    serializer_class = ExperienciaSerializer
+class ExperienceViewSet(BaseModelViewSet):
+    queryset = Experience.objects.all().order_by('-created_on')
+    serializer_class = ExperienceSerializer
 
 
-class ProyectosViewSet(BaseModelViewSet):
-    queryset = Proyectos.objects.all().order_by('-creado_en')
-    serializer_class = ProyectosSerializer
+class ProjectsViewSet(BaseModelViewSet):
+    queryset = Projects.objects.all().order_by('-created_on')
+    serializer_class = ProjectsSerializer
 
 
-class AcercaDeViewSet(BaseModelViewSet):
-    queryset = AcercaDe.objects.all()
-    serializer_class = AcercaDeSerializer
+class AboutViewSet(BaseModelViewSet):
+    queryset = About.objects.all()
+    serializer_class = AboutSerializer

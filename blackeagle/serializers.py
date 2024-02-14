@@ -1,22 +1,26 @@
 from rest_framework import serializers
-from .models import Educacion, Experiencia, Proyectos, AcercaDe
+from .models import Education, Experience, Projects, About
 
-class EducacionSerializer(serializers.ModelSerializer):
+
+class EducationSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Educacion
+        model = Education
         fields = '__all__'
 
-class ExperienciaSerializer(serializers.ModelSerializer):
+
+class ExperienceSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Experiencia
+        model = Experience
         fields = '__all__'
 
-class ProyectosSerializer(serializers.ModelSerializer):
+
+class ProjectsSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Proyectos
+        model = Projects
         fields = '__all__'
 
-class AcercaDeSerializer(serializers.ModelSerializer):
+
+class AboutSerializer(serializers.ModelSerializer):
     class Meta:
-        model = AcercaDe
+        model = About
         fields = '__all__'
