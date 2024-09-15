@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 import os
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -24,10 +25,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-6db9i2+xqx32%ro+kvjhcdefsb71&63yk2kv67wx2iubpztob2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['portfolioback-1-j3404097.deta.app',
-                 '127.0.0.1']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 
 # Application definition
@@ -81,9 +81,33 @@ TEMPLATES = [
 WSGI_APPLICATION = 'myportfolio.wsgi.application'
 
 # Configuración de CORS
-# CORS_ALLOWED_ORIGINS = [
-#    "http://localhost:4200",  # Agrega aquí la URL de tu frontend
-# ]
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost',  # Agrega aquí la URL de tu frontend
+]
+
+CORS_ALLOW_HEADERS = [
+
+    "authorization",
+    "content-type",
+    "x-csrftoken",
+    "x-requested-with",
+]
+
+CORS_ALLOW_CREDENTIALS = True
+
+CORS_ALLOW_METHODS = [
+    "DELETE",
+    "GET",
+    "OPTIONS",
+    "POST",
+    "PUT",
+]
+
+SECURE_HSTS_SECONDS = 31536000  # 1 año
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_PRELOAD = True
+
+SESSION_COOKIE_SECURE = True
 
 # Configuración de JWT
 REST_FRAMEWORK = {
@@ -93,12 +117,14 @@ REST_FRAMEWORK = {
 }
 
 # Configuración para protección CSRF
-CSRF_TRUSTED_ORIGINS = ['https://portfolioback-1-j3404097.deta.app',
-                        'http://127.0.0.1']
+CSRF_TRUSTED_ORIGINS = ['http://localhost', 'http://127.0.0.1'
+                        ]
 CSRF_USE_SESSIONS = False
 CSRF_COOKIE_SECURE = True
 CSRF_COOKIE_SAMESITE = 'Lax'
-CSRF_COOKIE_DOMAIN = 'portfolioback-1-j3404097.deta.app'
+CSRF_COOKIE_DOMAIN = 'localhost'
+
+
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
@@ -106,12 +132,9 @@ CSRF_COOKIE_DOMAIN = 'portfolioback-1-j3404097.deta.app'
 
 DATABASES = {
   'default': {
-    'ENGINE': 'django.db.backends.postgresql',
-    'NAME': 'portfolio',
-
-    'PORT': '5432',
-    'OPTIONS': {'sslmode': 'require'},
-  }
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
 
 
@@ -148,18 +171,23 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
+# Configuración de archivos estáticos
+
 STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles/')
 
 # Following settings only make sense on production and may break development environments.
-if not DEBUG:
+#if not DEBUG:
     # Tell Django to copy statics to the `staticfiles` directory
     # in your application directory on Render.
-    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+   #STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles/')
 
     # Turn on WhiteNoise storage backend that takes care of compressing static files
-    # and creating unique names for each version so they can safely be cached forever.
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+    # and creating unique names for each version, so they can safely be cached forever.
+
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
